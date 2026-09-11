@@ -1,0 +1,1059 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi objetivo de ahorro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: transparent;
+            color: #191919;
+        }
+
+        /* =========================
+           TARJETA PRINCIPAL
+        ========================= */
+
+        .widget {
+            width: 100%;
+            max-width: 520px;
+            margin: auto;
+
+            background: #ffffff;
+
+            border: 1px solid #e8e8e8;
+            border-radius: 20px;
+
+            padding: 26px;
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+
+        /* =========================
+           CABECERA
+        ========================= */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .titulo {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .subtitulo {
+            margin-top: 4px;
+
+            font-size: 13px;
+            color: #8a8a8a;
+        }
+
+        .icono {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eaf7ed;
+            border-radius: 14px;
+
+            font-size: 22px;
+        }
+
+
+        /* =========================
+           TOTAL AHORRADO
+        ========================= */
+
+        .total {
+            font-size: 38px;
+            font-weight: 750;
+
+            letter-spacing: -1.5px;
+
+            color: #218739;
+
+            margin-bottom: 5px;
+        }
+
+        .meta {
+            font-size: 14px;
+            color: #8a8a8a;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           BARRA
+        ========================= */
+
+        .barra-contenedor {
+            width: 100%;
+            height: 14px;
+
+            background: #edf0ed;
+
+            border-radius: 100px;
+
+            overflow: hidden;
+        }
+
+        .barra {
+            width: 0%;
+
+            height: 100%;
+
+            border-radius: 100px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4caf50,
+                    #82cf89
+                );
+
+            transition:
+                width 0.7s cubic-bezier(
+                    0.22,
+                    1,
+                    0.36,
+                    1
+                );
+        }
+
+
+        /* =========================
+           PORCENTAJE
+        ========================= */
+
+        .progreso-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 10px;
+            margin-bottom: 25px;
+
+            font-size: 13px;
+        }
+
+        .porcentaje {
+            color: #218739;
+            font-weight: 700;
+        }
+
+        .falta {
+            color: #8a8a8a;
+        }
+
+
+        /* =========================
+           INPUT
+        ========================= */
+
+        .formulario {
+            display: flex;
+            gap: 10px;
+
+            margin-bottom: 20px;
+        }
+
+        .input {
+            flex: 1;
+
+            min-width: 0;
+
+            padding: 13px 15px;
+
+            border: 1px solid #dedede;
+
+            border-radius: 11px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: #fafafa;
+        }
+
+        .input:focus {
+            border-color: #4caf50;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 3px rgba(
+                    76,
+                    175,
+                    80,
+                    0.10
+                );
+        }
+
+        .boton {
+            border: none;
+
+            padding: 0 18px;
+
+            border-radius: 11px;
+
+            background: #218739;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .boton:hover {
+            background: #176c2c;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           MENSAJE
+        ========================= */
+
+        .mensaje {
+            padding: 12px 14px;
+
+            background: #f7f9f7;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            color: #666;
+
+            margin-bottom: 22px;
+
+            text-align: center;
+        }
+
+        .mensaje.exito {
+            background: #eaf7ed;
+
+            color: #218739;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           HISTORIAL
+        ========================= */
+
+        .historial-titulo {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .cantidad-aportes {
+            color: #999;
+
+            font-weight: 400;
+        }
+
+        .historial {
+            max-height: 180px;
+
+            overflow-y: auto;
+        }
+
+        .aporte {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid #eeeeee;
+
+            font-size: 13px;
+        }
+
+        .aporte:last-child {
+            border-bottom: none;
+        }
+
+        .aporte-fecha {
+            color: #999;
+        }
+
+        .aporte-valor {
+            color: #218739;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           BOTONES INFERIORES
+        ========================= */
+
+        .acciones {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 18px;
+        }
+
+        .boton-secundario {
+            flex: 1;
+
+            padding: 9px;
+
+            border: 1px solid #e1e1e1;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #777;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        .boton-secundario:hover {
+            background: #f7f7f7;
+
+            color: #333;
+        }
+
+
+        /* =========================
+           META ALCANZADA
+        ========================= */
+
+        .meta-alcanzada {
+            animation: celebrar 0.5s ease;
+        }
+
+        @keyframes celebrar {
+
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* =========================
+           MÓVIL
+        ========================= */
+
+        @media (max-width: 450px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .widget {
+                padding: 20px;
+            }
+
+            .total {
+                font-size: 32px;
+            }
+
+            .formulario {
+                flex-direction: column;
+            }
+
+            .boton {
+                padding: 13px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="widget" id="widget">
+
+
+    <!-- CABECERA -->
+
+    <div class="header">
+
+        <div>
+
+            <div class="titulo">
+                Mi objetivo de ahorro
+            </div>
+
+            <div class="subtitulo">
+                Paso a paso hacia mi meta 💚
+            </div>
+
+        </div>
+
+        <div class="icono">
+            💰
+        </div>
+
+    </div>
+
+
+    <!-- TOTAL -->
+
+    <div
+        class="total"
+        id="total"
+    >
+        $0
+    </div>
+
+
+    <div
+        class="meta"
+        id="metaTexto"
+    >
+        Meta: $10.000
+    </div>
+
+
+    <!-- BARRA -->
+
+    <div class="barra-contenedor">
+
+        <div
+            class="barra"
+            id="barra"
+        ></div>
+
+    </div>
+
+
+    <!-- INFORMACIÓN -->
+
+    <div class="progreso-info">
+
+        <span
+            class="porcentaje"
+            id="porcentaje"
+        >
+            0%
+        </span>
+
+        <span
+            class="falta"
+            id="falta"
+        >
+            Faltan $10.000
+        </span>
+
+    </div>
+
+
+    <!-- FORMULARIO -->
+
+    <div class="formulario">
+
+        <input
+            class="input"
+            id="inputAhorro"
+            type="number"
+            min="1"
+            placeholder="¿Cuánto ahorraste?"
+        >
+
+        <button
+            class="boton"
+            onclick="agregarAporte()"
+        >
+            + Agregar
+        </button>
+
+    </div>
+
+
+    <!-- MENSAJE -->
+
+    <div
+        class="mensaje"
+        id="mensaje"
+    >
+        Empieza agregando tu primer ahorro.
+    </div>
+
+
+    <!-- HISTORIAL -->
+
+    <div class="historial-titulo">
+
+        <span>
+            Historial
+        </span>
+
+        <span
+            class="cantidad-aportes"
+            id="cantidadAportes"
+        >
+            0 aportes
+        </span>
+
+    </div>
+
+
+    <div
+        class="historial"
+        id="historial"
+    >
+    </div>
+
+
+    <!-- ACCIONES -->
+
+    <div class="acciones">
+
+        <button
+            class="boton-secundario"
+            onclick="deshacerUltimo()"
+        >
+            ↩️ Deshacer último
+        </button>
+
+        <button
+            class="boton-secundario"
+            onclick="reiniciar()"
+        >
+            🗑️ Reiniciar
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =================================
+   CONFIGURACIÓN
+================================= */
+
+
+/*
+   CAMBIA ESTE VALOR PARA MODIFICAR
+   TU META DE AHORRO.
+*/
+
+const META = 10000;
+
+
+/*
+   Símbolo de moneda.
+   Puedes cambiarlo por:
+   "$"
+   "€"
+   "R$"
+   "£"
+*/
+
+const MONEDA = "$";
+
+
+/* =================================
+   DATOS
+================================= */
+
+
+let aportes =
+    JSON.parse(
+        localStorage.getItem("aportesAhorro")
+    ) || [];
+
+
+/* =================================
+   FORMATO DE DINERO
+================================= */
+
+function dinero(valor) {
+
+    return MONEDA +
+        new Intl.NumberFormat("es-ES", {
+            maximumFractionDigits: 0
+        }).format(valor);
+
+}
+
+
+/* =================================
+   FECHA
+================================= */
+
+function obtenerFecha() {
+
+    const ahora = new Date();
+
+    return ahora.toLocaleDateString(
+        "es-ES",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =================================
+   ACTUALIZAR WIDGET
+================================= */
+
+function actualizar() {
+
+
+    /*
+       Calculamos el total
+    */
+
+    let total = aportes.reduce(
+        (suma, aporte) =>
+            suma + aporte.valor,
+        0
+    );
+
+
+    /*
+       No permitimos que visualmente
+       supere la meta.
+    */
+
+    const totalVisual =
+        Math.min(total, META);
+
+
+    /*
+       Calculamos porcentaje.
+    */
+
+    let porcentaje =
+        (totalVisual / META) * 100;
+
+    porcentaje =
+        Math.min(
+            Math.max(porcentaje, 0),
+            100
+        );
+
+
+    /*
+       Actualizamos total.
+    */
+
+    document.getElementById(
+        "total"
+    ).textContent =
+        dinero(totalVisual);
+
+
+    /*
+       Actualizamos meta.
+    */
+
+    document.getElementById(
+        "metaTexto"
+    ).textContent =
+        "Meta: " + dinero(META);
+
+
+    /*
+       Actualizamos barra.
+    */
+
+    document.getElementById(
+        "barra"
+    ).style.width =
+        porcentaje + "%";
+
+
+    /*
+       Porcentaje.
+    */
+
+    document.getElementById(
+        "porcentaje"
+    ).textContent =
+        Math.round(porcentaje) + "%";
+
+
+    /*
+       Dinero restante.
+    */
+
+    const restante =
+        Math.max(
+            META - totalVisual,
+            0
+        );
+
+
+    const falta =
+        document.getElementById(
+            "falta"
+        );
+
+
+    if (restante > 0) {
+
+        falta.textContent =
+            "Faltan " +
+            dinero(restante);
+
+    } else {
+
+        falta.textContent =
+            "🎉 ¡Meta alcanzada!";
+
+    }
+
+
+    /*
+       Mensaje.
+    */
+
+    const mensaje =
+        document.getElementById(
+            "mensaje"
+        );
+
+
+    if (porcentaje >= 100) {
+
+        mensaje.textContent =
+            "🎉 ¡Lo lograste! Has alcanzado tu objetivo.";
+
+        mensaje.classList.add(
+            "exito"
+        );
+
+        document
+            .getElementById("widget")
+            .classList.add(
+                "meta-alcanzada"
+            );
+
+    } else if (total === 0) {
+
+        mensaje.textContent =
+            "Empieza agregando tu primer ahorro.";
+
+        mensaje.classList.remove(
+            "exito"
+        );
+
+    } else {
+
+        mensaje.textContent =
+            "¡Muy bien! Sigue avanzando hacia tu meta.";
+
+        mensaje.classList.remove(
+            "exito"
+        );
+
+    }
+
+
+    /*
+       Historial.
+    */
+
+    const historial =
+        document.getElementById(
+            "historial"
+        );
+
+
+    historial.innerHTML = "";
+
+
+    /*
+       Mostramos del más reciente
+       al más antiguo.
+    */
+
+    [...aportes]
+        .reverse()
+        .forEach(
+            function(aporte) {
+
+                const elemento =
+                    document.createElement(
+                        "div"
+                    );
+
+                elemento.className =
+                    "aporte";
+
+
+                elemento.innerHTML = `
+
+                    <span class="aporte-fecha">
+                        ${aporte.fecha}
+                    </span>
+
+                    <span class="aporte-valor">
+                        +${dinero(aporte.valor)}
+                    </span>
+
+                `;
+
+
+                historial.appendChild(
+                    elemento
+                );
+
+            }
+        );
+
+
+    /*
+       Número de aportes.
+    */
+
+    document.getElementById(
+        "cantidadAportes"
+    ).textContent =
+        aportes.length +
+        (
+            aportes.length === 1
+                ? " aporte"
+                : " aportes"
+        );
+
+
+    /*
+       Guardamos los datos.
+    */
+
+    localStorage.setItem(
+        "aportesAhorro",
+        JSON.stringify(aportes)
+    );
+
+}
+
+
+/* =================================
+   AGREGAR APORTE
+================================= */
+
+function agregarAporte() {
+
+
+    const input =
+        document.getElementById(
+            "inputAhorro"
+        );
+
+
+    const valor =
+        Number(input.value);
+
+
+    /*
+       Validación.
+    */
+
+    if (!valor || valor <= 0) {
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /*
+       Agregamos el aporte.
+    */
+
+    aportes.push({
+
+        valor: valor,
+
+        fecha: obtenerFecha()
+
+    });
+
+
+    /*
+       Limpiamos input.
+    */
+
+    input.value = "";
+
+
+    /*
+       Actualizamos.
+    */
+
+    actualizar();
+
+
+    input.focus();
+
+}
+
+
+/* =================================
+   DESHACER ÚLTIMO
+================================= */
+
+function deshacerUltimo() {
+
+
+    if (aportes.length === 0) {
+
+        return;
+
+    }
+
+
+    aportes.pop();
+
+
+    actualizar();
+
+}
+
+
+/* =================================
+   REINICIAR
+================================= */
+
+function reiniciar() {
+
+
+    if (aportes.length === 0) {
+
+        return;
+
+    }
+
+
+    const confirmar =
+        confirm(
+            "¿Quieres borrar todo tu historial de ahorro?"
+        );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    aportes = [];
+
+
+    localStorage.removeItem(
+        "aportesAhorro"
+    );
+
+
+    actualizar();
+
+}
+
+
+/* =================================
+   ENTER
+================================= */
+
+document
+    .getElementById("inputAhorro")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                agregarAporte();
+
+            }
+
+        }
+    );
+
+
+/* =================================
+   INICIAR
+================================= */
+
+actualizar();
+
+
+</script>
+
+
+</body>
+</html>
+```
