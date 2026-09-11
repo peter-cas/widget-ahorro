@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mi objetivo de ahorro</title>
+    <title>Poupança</title>
 
     <style>
 
@@ -439,11 +438,11 @@
         <div>
 
             <div class="titulo">
-                Mi objetivo de ahorro
+                Poupança
             </div>
 
             <div class="subtitulo">
-                Paso a paso hacia mi meta 💚
+                Objetivo atual: Viajem
             </div>
 
         </div>
@@ -469,7 +468,7 @@
         class="meta"
         id="metaTexto"
     >
-        Meta: $10.000
+        Meta: R$4000
     </div>
 
 
@@ -500,7 +499,7 @@
             class="falta"
             id="falta"
         >
-            Faltan $10.000
+            Faltan R$4000
         </span>
 
     </div>
@@ -515,7 +514,7 @@
             id="inputAhorro"
             type="number"
             min="1"
-            placeholder="¿Cuánto ahorraste?"
+            placeholder="Quanto vai acrescentar?"
         >
 
         <button
@@ -534,7 +533,7 @@
         class="mensaje"
         id="mensaje"
     >
-        Empieza agregando tu primer ahorro.
+        Começa colocando a primeira moeda.
     </div>
 
 
@@ -571,7 +570,7 @@
             class="boton-secundario"
             onclick="deshacerUltimo()"
         >
-            ↩️ Deshacer último
+            ↩️ Desfazer
         </button>
 
         <button
@@ -600,7 +599,7 @@
    TU META DE AHORRO.
 */
 
-const META = 10000;
+const META = 4000;
 
 
 /*
@@ -612,7 +611,7 @@ const META = 10000;
    "£"
 */
 
-const MONEDA = "$";
+const MONEDA = "R$";
 
 
 /* =================================
@@ -778,41 +777,41 @@ function actualizar() {
 
     const mensaje =
         document.getElementById(
-            "mensaje"
+            "mensagem"
         );
 
 
     if (porcentaje >= 100) {
 
         mensaje.textContent =
-            "🎉 ¡Lo lograste! Has alcanzado tu objetivo.";
+            "🎉 Ebaaaa, objetivo conquistado com sucesso";
 
         mensaje.classList.add(
-            "exito"
+            "Sucesso"
         );
 
         document
             .getElementById("widget")
             .classList.add(
-                "meta-alcanzada"
+                "meta-conquistada"
             );
 
     } else if (total === 0) {
 
         mensaje.textContent =
-            "Empieza agregando tu primer ahorro.";
+            "Começa acrescentando tua primeira moeda.";
 
         mensaje.classList.remove(
-            "exito"
+            "sucesso"
         );
 
     } else {
 
         mensaje.textContent =
-            "¡Muy bien! Sigue avanzando hacia tu meta.";
+            "Muito bem!";
 
         mensaje.classList.remove(
-            "exito"
+            "sucesso"
         );
 
     }
@@ -998,7 +997,7 @@ function reiniciar() {
 
     const confirmar =
         confirm(
-            "¿Quieres borrar todo tu historial de ahorro?"
+            "¿Deseja apagar todo o historial da poupança?"
         );
 
 
@@ -1056,4 +1055,3 @@ actualizar();
 
 </body>
 </html>
-```
